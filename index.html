@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello Piramide!</title>
+	<script src="js/app.js"></script>
+	<script src="Common/glmatrix/gl-matrix-min.js"></script>
+	<script src="Common/cameras/Camera.js"></script>
+	<script src="Common/ShaderProgramHelper.js"></script>
+	<script src="Common/cameras/SphericalCamera.js"></script>
+	<script src="shaders/fragment.glsl"></script>
+	<script src="shaders/vertex.glsl"></script>
+	<script src="Clases/Piramide.js"></script>
+</head>
+<body onload='onLoad();'>
+	<h1>Hello Piramide!</h1>
+	<button onclick="onRender();">Manual Render!</button><br>
+	<canvas id='webglCanvas' width = "500" height = "500">
+	</canvas>
+</body>
+</html>
