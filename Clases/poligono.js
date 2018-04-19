@@ -1,0 +1,4 @@
+class poligono {
+  var position;
+
+}
