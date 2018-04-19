@@ -1,6 +1,6 @@
 var gl = null;
 //This extension is to support VAOs in webgl1. (In webgl2, functions are called directly to gl object.)
-var vaoExtension = null;
+var _gl = null;
 var shaderProgram  = null; //Shader program to use.
 
 var camera;
@@ -15,7 +15,7 @@ var u_modelColor;
 function onLoad() {
   let canvas = document.getElementById('webglCanvas');
 	gl = canvas.getContext('webgl');
-	vaoExtension = gl.getExtension('OES_vertex_array_object');
+	_gl = gl.getExtension('OES_vertex_array_object');
   shaderProgram = ShaderProgramHelper.create(vertexShaderSource, fragmentShaderSource);
   piramide = new Piramide(2,2);
 
@@ -31,6 +31,7 @@ function onLoad() {
 
   camera = new SphericalCamera(55, 800/600);//use canvas dimensions
 
+  piramide.model(posLocation, _gl);
   onRender();
 }
 
@@ -39,10 +40,10 @@ function onRender() {
   let projMatrix = camera.getProjMatrix();
   let modelMatrix = mat4.create();
 
-  gl.uniformMatrix4fv(u_modelMatrix, false, modelMatrix);
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
   gl.useProgram(shaderProgram);
 
+  gl.uniformMatrix4fv(u_modelMatrix, false, modelMatrix);
 	gl.uniformMatrix4fv(u_viewMatrix, false, viewMatrix);
 	gl.uniformMatrix4fv(u_projMatrix, false, projMatrix);
 
